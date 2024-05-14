@@ -1,0 +1,13 @@
+2024-05-14 12:36:26,960 -  nornir.core -     INFO -        run() - Running task 'napalm_get' with args {'getters': ['get_facts']} on 1 hosts
+2024-05-14 12:36:31,763 -  nornir.core -     INFO -        run() - Running task 'napalm_get' with args {'getters': ['get_facts']} on 1 hosts
+2024-05-14 12:36:48,434 -  nornir.core -     INFO -        run() - Running task 'napalm_get' with args {'getters': ['get_facts']} on 1 hosts
+2024-05-14 12:36:55,051 -  nornir.core -     INFO -        run() - Running task 'napalm_get' with args {'getters': ['get_facts']} on 1 hosts
+2024-05-14 12:37:43,462 -  nornir.core -     INFO -        run() - Running task 'napalm_get' with args {'getters': ['get_facts']} on 1 hosts
+2024-05-14 12:37:47,785 -  nornir.core -     INFO -        run() - Running task 'napalm_get' with args {'getters': ['get_facts']} on 1 hosts
+2024-05-14 12:39:52,004 -  nornir.core -     INFO -        run() - Running task 'config_task' with args {'template': {'eos': 'interface Ethernet1\nno switchport\nip address {{ ip_address }}\nno shutdown'}} on 2 hosts
+2024-05-14 12:46:36,981 -  nornir.core -     INFO -        run() - Running task 'set_eth_ip' with args {'template': {'eos': 'interface Ethernet1\nno switchport\nip address {{ ip_address }}\nno shutdown'}} on 2 hosts
+2024-05-14 12:46:41,685 -  nornir.core -     INFO -        run() - Running task 'set_lo_ip' with args {'template': {'eos': 'interface Loopback0\nno switchport\nip address {{ ip_address }}\nno shutdown'}} on 2 hosts
+2024-05-14 12:48:46,258 -  nornir.core -     INFO -        run() - Running task 'napalm_ping' with args {'dest': '1.1.1.2'} on 1 hosts
+2024-05-14 12:48:48,479 -  nornir.core -     INFO -        run() - Running task 'napalm_ping' with args {'dest': '1.1.1.1'} on 1 hosts
+2024-05-14 12:53:30,114 -  nornir.core -     INFO -        run() - Running task 'config_task' with args {'template': {'eos': 'interface Ethernet1\nip ospf network point-to-point'}} on 2 hosts
+2024-05-14 12:53:34,538 -  nornir.core -     INFO -        run() - Running task 'config_task' with args {'template': {'eos': 'router ospf 1\npassive-interface default\nno passive-interface Ethernet1\nnetwork 0.0.0.0/0 area 0.0.0.0'}} on 2 hosts

@@ -1,0 +1,23 @@
+---
+router1:
+  hostname: "104.248.19.53" # use your IP Address
+  platform: "eos"
+  groups:
+    - "workshop"
+  connection_options:
+    napalm:
+      extras:
+        optional_args:
+          port: 12001 # use your Port
+          transport: "ssh"
+router2:
+  hostname: "104.248.19.53" # use your IP Address
+  platform: "eos"
+  groups:
+    - "workshop"
+  connection_options:
+    napalm:
+      extras:
+        optional_args:
+          port: 12002 # use your Port
+          transport: "ssh"

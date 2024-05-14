@@ -1,0 +1,5 @@
+napalm==5.0.0
+nornir==3.4.1
+nornir_napalm==0.5.0
+nornir_jinja2==0.2.0
+nornir_utils==0.2.0
