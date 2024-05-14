@@ -9,9 +9,16 @@ from nornir_utils.plugins.functions import print_result
 TEMPLATE_IFACE = {
     "eos": "interface Ethernet1\nip ospf network point-to-point",
 }
-TEMPLATE_OSPF = {
-    "eos": "router ospf 1\npassive-interface default\nno passive-interface Ethernet1\nnetwork 0.0.0.0/0 area 0.0.0.0",
+TEMPLATE_LO = {
+    "eos": "interface Loopback0\nip ospf network point-to-point",
 }
+TEMPLATE_OSPF = {
+    "eos": "router ospf 1\npassive-interface default\nno passive-interface Ethernet1\nnetwork 0.0.0.0/0 area 0.0.0.0\nredistribute connected",
+}
+TEMPLATE_ROUTING = {
+    "eos": "ip routing",
+}
+
 
 
 def config_task(task: Task, template) -> Result:
@@ -31,8 +38,6 @@ def config_task(task: Task, template) -> Result:
         # The rendered configuration from previous subtask is used
         # as the configuration input
         configuration=render_result.result,
-        # dry_run means the changes without applying them
-        dry_run=True,
     )
 
     return Result(host=task.host, result=config_result)
@@ -47,8 +52,19 @@ result_1 = nr.run(
 )
 result_2 = nr.run(
     task=config_task,
+    template=TEMPLATE_LO,
+)
+result_3 = nr.run(
+    task=config_task,
     template=TEMPLATE_OSPF,
+)
+result_4 = nr.run(
+    task=config_task,
+    template=TEMPLATE_ROUTING,
 )
 
 print_result(result_1)
 print_result(result_2)
+print_result(result_3)
+print_result(result_4)
+

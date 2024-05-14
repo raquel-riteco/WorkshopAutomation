@@ -12,7 +12,7 @@ TEMPLATE_ETH = {
     "eos": "interface Ethernet1\nno switchport\nip address {{ ip_address }}\nno shutdown",
 }
 TEMPLATE_LO = {
-    "eos": "interface Loopback0\nno switchport\nip address {{ ip_address }}\nno shutdown",
+    "eos": "interface Loopback0\nip address {{ ip_address }}\nno shutdown",
 }
 
 
@@ -52,8 +52,6 @@ def set_eth_ip(task: Task, template) -> Result:
         # The rendered configuration from previous subtask is used
         # as the configuration input
         configuration=render_result.result,
-        # dry_run means the changes without applying them
-        dry_run=True,
     )
 
     return Result(host=task.host, result=config_result)
@@ -65,13 +63,13 @@ def set_lo_ip(task: Task, template) -> Result:
     - Render a configuration from a Jinja2 template
     - Push the rendered configuration to the device
     """
-    result_ip = "1.1.1.1" if task.host.name == "router1" else "1.1.1.2"
+    result_ip = "1.1.1.1/32" if task.host.name == "router1" else "1.1.1.2/32"
 
     render_result = task.run(
         task=template_string,
         # The right template per platform is selected
         template=template[task.host.platform],
-        ip_address=(result_ip),
+        ip_address=result_ip,
     )
 
     config_result = task.run(
@@ -79,8 +77,6 @@ def set_lo_ip(task: Task, template) -> Result:
         # The rendered configuration from previous subtask is used
         # as the configuration input
         configuration=render_result.result,
-        # dry_run means the changes without applying them
-        dry_run=True,
     )
 
     return Result(host=task.host, result=config_result)
